@@ -1,6 +1,8 @@
+dj-database-url==0.4.1
 Django==1.9.6
 django-cors-headers==1.1.0
 django-dual-authentication==1.0.0
+django-envie==0.0.9
 django-filter==0.13.0
 django-registration-redux==1.4
 django-rest-swagger==0.3.6
@@ -12,3 +14,4 @@ Markdown==2.6.6
 psycopg2==2.6.1
 PyJWT==1.4.0
 PyYAML==3.11
+wheel==0.24.0
