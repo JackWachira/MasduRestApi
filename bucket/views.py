@@ -67,11 +67,8 @@ class BucketListView(viewsets.ModelViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request):
-        bucketlists = BucketList.objects.all()
-        page = self.paginate_queryset(bucketlists)
-        if page:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+        owner = request.user
+        bucketlists = BucketList.objects.all().filter(user=owner)
         serializer = self.get_serializer(bucketlists, many=True)
         return Response(serializer.data)
 
