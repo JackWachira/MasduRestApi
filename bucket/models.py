@@ -18,7 +18,7 @@ class BucketListItem(models.Model):
 
 
 class BucketList(models.Model):
-    name = models.CharField(blank=False, unique=True, max_length=255)
+    name = models.CharField(blank=False, max_length=255)
     date_created = models.DateField(auto_now_add=True, editable=False)
     date_updated = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,
