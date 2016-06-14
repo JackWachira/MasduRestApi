@@ -6,7 +6,7 @@ from .base import *
 import dj_database_url
 
 
-DEBUG = True
+DEBUG = False
 
 DATABASES = {
     'default': dj_database_url.config()
