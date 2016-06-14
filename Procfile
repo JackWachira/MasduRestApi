@@ -1,1 +1,1 @@
-web: gunicorn MasduRestApi.wsgi --log-file -
+web: gunicorn MasduRestApi.wsgi; python manage.py collectstatic --log-file -
