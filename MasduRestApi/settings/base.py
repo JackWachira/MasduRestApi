@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'registration',
     'corsheaders',
-    'bucket'
+    'bucket',
 ]
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.static'
@@ -189,7 +189,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
