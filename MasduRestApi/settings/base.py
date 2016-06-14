@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'registration',
     'corsheaders',
     'bucket',
-    'rest_framework_docs'
+    'rest_framework_docs',
 ]
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.static'
