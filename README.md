@@ -37,7 +37,7 @@ Django Rest Api for [Masdu Bucketlist Application](http://masdu.herokuapp.com/)
 
 ## Usage
 
-For developers, the API docs can be accessed on [Ditter API Docs](https://masduapi.herokuapp.com/docs/).
+For developers, the API docs can be accessed on [Masdu API Docs](https://masduapi.herokuapp.com/docs/).
 
 #### Example usage (Note: Examples use [HTTPie](https://github.com/jkbrzt/httpie) to send requests)
 
