@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'bucket'
 ]
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.core.context_processors.static'
+]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,7 +86,7 @@ ROOT_URLCONF = 'MasduRestApi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,6 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.static'
             ],
         },
     },
@@ -98,7 +102,7 @@ TEMPLATES = [
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #     'django.template.loaders.eggs.Loader',
 )
 TEMPLATE_DIRS = (
     # Include the "templates" directory in the current directory
