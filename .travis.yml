@@ -2,10 +2,6 @@ language: python
 python:
   - "2.7"
 
-branches:
-  only:
-    - feature-review
-
 install:
   - pip install -r requirements.txt
   - pip install coveralls
