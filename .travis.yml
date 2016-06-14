@@ -11,11 +11,11 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
 
-# env:
-#   - DB=sqlite
+env:
+  - DB=sqlite
 
 script:
-  - python manage.py test bucket/ --noinput --settings=MasduRestApi.settings.test
+  - python manage.py test --settings=MasduRestApi.settings.test
 
 after_success:
   - coveralls
