@@ -8,7 +8,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=bucket',
+    '--cover-package=bucket,authentication',
 ]
 
 DATABASES = {

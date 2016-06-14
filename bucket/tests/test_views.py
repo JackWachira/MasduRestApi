@@ -99,75 +99,76 @@ class BucketListViewTestCase(APITestCase):
         self.assertEqual(delete_response.status_code, 204)
 
 
-# class APIBucketlistItemTestCase(APITestCase):
-#     """Tests for actions on bucketlist items."""
+class BucketListItemViewTestCase(APITestCase):
+    """Tests for actions on bucketlist items."""
 
-#     def setUp(self):
-#         """Setup."""
-#         self.client.post('/api/auth/register/',
-#                          {
-#                              'username': 'amos',
-#                              'email': 'amos.omondi@andela.com',
-#                              'password': '12345',
-#                          },
-#                          format='json')
+    def setUp(self):
+        """Setup."""
 
-#         login_response = self.client.post('/api/auth/login/',
-#                                           {
-#                                               'username': 'amos',
-#                                               'password': '12345',
-#                                           },
-#                                           format='json')
+        self.client.post('/api/auth/register/',
+                         {
+                             'username': 'jack',
+                             'email': 'jack@gmail.com',
+                             'password': 'passw',
+                         },
+                         format='json')
 
-#         token = login_response.data["token"]
+        response = self.client.post('/api/auth/login/',
+                                    {
+                                        'username': 'jack@gmail.com',
+                                        'password': 'passw',
+                                    },
+                                    format='json')
 
-#         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token)
+        token = response.data["token"]
 
-#         creation_response = self.client.post('/api/bucketlists/',
-#                                              {
-#                                                  'name': 'Books I want to read',
-#                                              },
-#                                              format='json')
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + token)
 
-#     def test_creating_bucketlist_item(self):
-#         """Test creation of a bucketlist item."""
-#         item_creation_response = self.client.post('/api/bucketlists/1/items/',
-#                                                   {
-#                                                       'name': 'Harry Potter',
-#                                                   },
-#                                                   format='json')
+        creation_response = self.client.post('/api/bucketlists/',
+                                             {
+                                                 'name': 'Travel',
+                                             },
+                                             format='json')
 
-#         self.assertEqual(item_creation_response.status_code, 201)
-#         self.assertEqual("Harry Potter", item_creation_response.data['name'])
-#         self.assertEqual(False, item_creation_response.data['done'])
+    def test_creating_bucketlist_item(self):
+        """Test creation of a bucketlist item."""
+        item_creation_response = self.client.post('/api/bucketlists/1/items/',
+                                                  {
+                                                      'name': 'Beach Tour',
+                                                  },
+                                                  format='json')
 
-#     def test_updating_bucketlist_item(self):
-#         """Test updating of a bucketlist item."""
-#         item_creation_response = self.client.post('/api/bucketlists/1/items/',
-#                                                   {
-#                                                       'name': 'Harry Potter',
-#                                                   },
-#                                                   format='json')
+        self.assertEqual(item_creation_response.status_code, 201)
+        self.assertEqual("Beach Tour", item_creation_response.data['name'])
+        self.assertEqual(False, item_creation_response.data['done'])
 
-#         item_updating_response = self.client.put('/api/bucketlists/1/items/1',
-#                                                  {
-#                                                      'name': 'Harry Potter 3',
-#                                                  },
-#                                                  format='json')
+    def test_updating_bucketlist_item(self):
+        """Test updating of a bucketlist item."""
+        item_creation_response = self.client.post('/api/bucketlists/1/items/',
+                                                  {
+                                                      'name': 'Beach Tour',
+                                                  },
+                                                  format='json')
 
-#         self.assertEqual(item_updating_response.status_code, 200)
-#         self.assertIn("Harry Potter 3", item_updating_response.data['name'])
+        item_updating_response = self.client.put('/api/bucketlists/1/items/1/',
+                                                 {
+                                                     'name': 'Great Wall of China',
+                                                 },
+                                                 format='json')
 
-#     def test_deleting_bucketlist_item(self):
-#         """Test updating of a bucketlist item."""
-#         item_creation_response = self.client.post('/api/bucketlists/1/items/',
-#                                                   {
-#                                                       'name': 'Harry Potter',
-#                                                   },
-#                                                   format='json')
+        self.assertEqual(item_updating_response.status_code, 200)
+        self.assertIn("Great Wall of China",
+                      item_updating_response.data['name'])
 
-#         item_deletion_response = self.client.delete(
-#             '/api/bucketlists/1/items/1')
+    def test_deleting_bucketlist_item(self):
+        """Test updating of a bucketlist item."""
+        item_creation_response = self.client.post('/api/bucketlists/1/items/',
+                                                  {
+                                                      'name': 'Beach Tour',
+                                                  },
+                                                  format='json')
 
-#         self.assertEqual(item_deletion_response.status_code, 204)
-#         self.assertIsNone(item_deletion_response.data)
+        item_deletion_response = self.client.delete(
+            '/api/bucketlists/1/items/1/')
+
+        self.assertEqual(item_deletion_response.status_code, 204)
