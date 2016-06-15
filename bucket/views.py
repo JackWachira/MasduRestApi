@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from bucket.serializers import BucketlistSerializer, BucketlistItemSerializer
 from bucket.models import BucketList, BucketListItem
 from rest_framework import permissions
@@ -7,11 +6,7 @@ from rest_framework import viewsets
 from django.db import IntegrityError
 from rest_framework import status
 from bucket.permissions import IsOwner
-from django.utils.six import BytesIO
-from rest_framework.parsers import JSONParser
-from django.core import serializers
 from functools import wraps
-from rest_framework.decorators import detail_route, list_route
 
 
 def bucket_existing(f):
@@ -19,7 +14,7 @@ def bucket_existing(f):
     def decorated(*args, **kwargs):
         pk = kwargs.get('pk', "")
         try:
-            bucketlist = BucketList.objects.get(pk=pk)
+            BucketList.objects.get(pk=pk)
             return f(*args, **kwargs)
         except BucketList.DoesNotExist:
             return Response({'error': 'The bucketlist does not exist'}, 404)
@@ -32,7 +27,7 @@ def item_existing(f):
         bucketlists_pk = kwargs.get('bucketlists_pk', "")
         pk = kwargs.get('pk', "")
         try:
-            bucketlist = BucketList.objects.get(pk=bucketlists_pk)
+            BucketList.objects.get(pk=bucketlists_pk)
         except BucketList.DoesNotExist:
             return Response({'error': 'The bucketlist does not exist'}, 404)
         try:
@@ -45,7 +40,7 @@ def item_existing(f):
 
 class BucketListView(viewsets.ModelViewSet):
     """
-    Bucketlist view
+    Bucketlist View
     """
     queryset = BucketList.objects.all()
     serializer_class = BucketlistSerializer
@@ -57,7 +52,7 @@ class BucketListView(viewsets.ModelViewSet):
             name = self.request.data['name']
             user = self.request.user
             try:
-                bucket_list = BucketList.objects.create(
+                BucketList.objects.create(
                     name=name, user=user)
                 return Response({'message': 'BucketList created successfully'}, 201)
             except IntegrityError as e:
@@ -89,7 +84,7 @@ class BucketListView(viewsets.ModelViewSet):
 
 class BucketListItemView(viewsets.ModelViewSet):
     """
-    Bucketlistitem view
+    Bucketlistitem View
     """
 
     queryset = BucketListItem.objects.all()
@@ -123,6 +118,5 @@ class BucketListItemView(viewsets.ModelViewSet):
 
     @item_existing
     def destroy(self, request, pk=None, bucketlists_pk=None):
-        print bucketlists_pk
-        bucketlist_item = BucketListItem.objects.get(pk=pk).delete()
+        BucketListItem.objects.get(pk=pk).delete()
         return Response({'Message': 'Bucketlist item deleted successfully'}, 204)

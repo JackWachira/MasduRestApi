@@ -1,10 +1,10 @@
 """Import test tools from rest_framework."""
-from rest_framework import status
+
 from rest_framework.test import APITestCase
 
 
-class SignUpViewTestCase(APITestCase):
-    """Tests for API authorizaion."""
+class AuthenticationTestCase(APITestCase):
+    """Tests Signup and Login"""
 
     def test_registration_successful(self):
         """Test that new user is registered successfully"""
@@ -17,7 +17,7 @@ class SignUpViewTestCase(APITestCase):
                                              format='json')
         self.assertEqual(creation_response.status_code, 201)
 
-    def test_registration_successful(self):
+    def test_unsuccesful_registration(self):
         """Test that an existing user canot register more than once"""
         creation_response = self.client.post('/api/auth/register/',
                                              {

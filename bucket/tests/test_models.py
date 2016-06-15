@@ -5,8 +5,11 @@ from django.test import TestCase
 
 
 class BucketListModelTestCase(TestCase):
+    """ Tests the BucketList Model """
+
     def setUp(self):
-        user = User.objects.create(username="testuser", password="testpassword")
+        user = User.objects.create(
+            username="testuser", password="testpassword")
         bucketlist = BucketList.objects.create(name="TestBucket", user=user)
         item = BucketListItem.objects.create(name="TestItem",
                                              bucketlist=bucketlist)
@@ -21,8 +24,11 @@ class BucketListModelTestCase(TestCase):
 
 
 class BucketListItemModelTestCase(TestCase):
+    """ Tests the BucketListItem Model """
+
     def setUp(self):
-        user = User.objects.create(username="testuser", password="testpassword")
+        user = User.objects.create(
+            username="testuser", password="testpassword")
         bucketlist = BucketList.objects.create(name="TestBucket", user=user)
         item = BucketListItem.objects.create(name="TestItem",
                                              bucketlist=bucketlist)

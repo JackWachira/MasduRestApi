@@ -25,5 +25,4 @@ urlpatterns = [
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api/', include(api)),
     url(r'^docs/', include('rest_framework_swagger.urls')),
-    # url(r'^docs/', include('rest_framework_docs.urls')),
 ]

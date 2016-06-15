@@ -1,11 +1,11 @@
-from django.conf.urls import url, include
-from rest_framework import routers
-from authentication import views
+from django.conf.urls import include, url
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
+from authentication import views
 
 app_name = 'authentication'
+
 router = DefaultRouter()
 router.register(r'register', views.SignUpView)
 
