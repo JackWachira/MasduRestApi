@@ -70,7 +70,7 @@ class BucketListView(viewsets.ModelViewSet):
     @bucket_existing
     def destroy(self, request, pk=None):
         bucketlist = BucketList.objects.get(pk=pk).delete()
-        return Response({'Message': 'Bucketlist deleted successfully'}, 204)
+        return Response({'Message': 'Bucketlist deleted successfully'}, 200)
 
     @bucket_existing
     def update(self, request, pk=None):
@@ -119,4 +119,4 @@ class BucketListItemView(viewsets.ModelViewSet):
     @item_existing
     def destroy(self, request, pk=None, bucketlists_pk=None):
         BucketListItem.objects.get(pk=pk).delete()
-        return Response({'Message': 'Bucketlist item deleted successfully'}, 204)
+        return Response({'Message': 'Bucketlist item deleted successfully'}, 200)

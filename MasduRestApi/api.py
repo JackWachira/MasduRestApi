@@ -7,7 +7,6 @@ Using Class-based views
         url(r'^api/home/$', HomeApiView.as_view(), name='home_api')
 """
 from django.conf.urls import include, url
-from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [

@@ -95,7 +95,7 @@ class BucketListViewTestCase(APITestCase):
 
         delete_response = self.client.delete('/api/bucketlists/1/')
 
-        self.assertEqual(delete_response.status_code, 204)
+        self.assertEqual(delete_response.status_code, 200)
 
 
 class BucketListItemViewTestCase(APITestCase):
@@ -170,4 +170,4 @@ class BucketListItemViewTestCase(APITestCase):
         item_deletion_response = self.client.delete(
             '/api/bucketlists/1/items/1/')
 
-        self.assertEqual(item_deletion_response.status_code, 204)
+        self.assertEqual(item_deletion_response.status_code, 200)
