@@ -72,3 +72,6 @@ venv/
 .settings
 .project
 .pydevproject
+
+# staticfiles
+MasduRestApi/staticfiles/
