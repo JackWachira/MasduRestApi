@@ -21,20 +21,12 @@ class SignUpView(viewsets.ViewSet):
     def create(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            username = self.request.data['username']
-            email = self.request.data['email']
-            password = self.request.data['password']
-            confirm_password = self.request.data['confirm_password']
-            if password == confirm_password:
-                try:
-                    User.objects.create_user(
-                        username=username, email=email, password=password)
-                    return Response({'message': 'Registration successful'}, 201)
-                except IntegrityError as e:
-                    return Response({'error': e.message}, 400)
-            else:
-                return Response({'error': 'Passwords do not match'},
-                                400)
+            try:
+                serializer.save()
+                return Response({'message': 'Registration successful'}, 201)
+            except IntegrityError as e:
+                return Response({'error': e.message}, 400)
+
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)

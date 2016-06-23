@@ -15,6 +15,18 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'username', 'password', 'confirm_password')
         read_only_fields = ('id', 'confirm_password')
 
+    def create(self, validated_data):
+        validated_data.pop('confirm_password')
+        return User.objects.create_user(**validated_data)
+
+    def validate(self, data):
+        if data['password']:
+            if data['password'] != data['confirm_password']:
+                raise serializers.ValidationError(
+                    "The passwords have to be the same"
+                )
+        return data
+
 
 class LoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
