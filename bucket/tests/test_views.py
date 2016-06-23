@@ -13,13 +13,18 @@ class BucketListViewTestCase(APITestCase):
     def setUp(self):
         """Setup."""
 
-        self.client.post('/api/auth/register/', {'username': 'jack',
-                                                 'email': 'jack@gmail.com', 'password': 'passw'
-                                                 }, format='json')
+        self.client.post('/api/auth/register/', {
+            'username': 'jack',
+            'email': 'jack@gmail.com',
+            'password': 'passw',
+            'confirm_password': 'passw',
+        }, format='json')
 
         response = self.client.post('/api/auth/login/',
                                     {'username': 'jack@gmail.com',
-                                     'password': 'passw'}, format='json')
+                                     'password': 'passw',
+                                     'confirm_password': 'passw'},
+                                    format='json')
 
         token = response.data['token']
 
@@ -91,13 +96,18 @@ class BucketListItemViewTestCase(APITestCase):
     def setUp(self):
         """Setup."""
 
-        self.client.post('/api/auth/register/', {'username': 'jack',
-                                                 'email': 'jack@gmail.com', 'password': 'passw'
-                                                 }, format='json')
+        self.client.post('/api/auth/register/', {
+            'username': 'jack',
+            'email': 'jack@gmail.com',
+            'password': 'passw',
+            'confirm_password': 'passw',
+        }, format='json')
 
         response = self.client.post('/api/auth/login/',
                                     {'username': 'jack@gmail.com',
-                                     'password': 'passw'}, format='json')
+                                     'password': 'passw',
+                                     'confirm_password': 'passw'},
+                                    format='json')
 
         token = response.data['token']
 

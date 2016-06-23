@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from bucket.models import BucketList, BucketListItem
 
 from django.contrib.auth.models import User
