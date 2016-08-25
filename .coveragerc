@@ -1,0 +1,9 @@
+[report]
+omit =
+    */python?.?/*
+    */site-packages/nose/*
+    *__init__*
+    *migrations/*
+    *bucket/admin.py*
+    *authentication/admin.py*
+    *authentication/models.py*
